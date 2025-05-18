@@ -48,10 +48,28 @@ int is_valid(Node* n){
     return 1;
 }
 
-
 List* get_adj_nodes(Node* n){
-    List* list=createList();
-    return list;
+   List* list=createList();
+   Node * aux = (Node*) malloc(sizeof(Node));
+   int x,y;
+   int fin=0;
+   for (size_t i = 0; i<9; i++){
+    if (fin==1) break;
+    for (size_t j = 0; j<9; j++){
+      if (n->sudo[i][j] == 0){
+        x=i;
+        y=j;
+        fin = 1;
+        break;
+      }
+    }
+   }
+   for (int num = 1; num<=9; num++){
+    aux = copy(n);
+    aux->sudo[x][y] = num;
+    pushFront(list,aux);
+   }
+   return list;
 }
 
 
