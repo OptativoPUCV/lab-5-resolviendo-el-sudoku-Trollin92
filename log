@@ -141,3 +141,17 @@ Sun, May 18, 2025  9:03:16 PM:
  1 file changed, 15 insertions(+), 1 deletion(-)
  tests:  0|0
 21d80f9
+Sun, May 18, 2025 11:29:48 PM: 
+ sudoku.c | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+Compilation failed
+In file included from test.c:5:
+sudoku.c: In function 'DFS':
+sudoku.c:123:16: error: void value not ignored as it ought to be
+  123 |     Node*aux = pop(D);
+      |                ^~~
+test.c: At top level:
+test.c:7:8: warning: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Wattributes]
+    7 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+8bfc4c7

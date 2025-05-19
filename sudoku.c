@@ -119,13 +119,20 @@ int is_final(Node* n){
 Node* DFS(Node* initial, int* cont){
   Stack *D=createStack();
   push(D,initial); //canned laughter
-  while(D){
-    Node*aux = copy(top(D));
-    pop(top(D));
+  while(!is_empty(D)){
+    Node*aux = pop(D);
+    (*cont)++;
     if (is_final(aux)) return aux;
-    
-    return NULL;
+    List *listaNodos = get_adj_nodes(aux);
+    Node* nodoAdj = first(listaNodos);
+    while (nodoAdj != NULL) {
+      push(D, nodoAdj);
+      nodoAdj = next(listaNodos);
+    }
+    free(aux);
+    free(listaNodos);
   }
+  return NULL;
 }
 
 
