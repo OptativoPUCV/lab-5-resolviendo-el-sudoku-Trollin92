@@ -107,11 +107,25 @@ List* get_adj_nodes(Node* n){
 
 
 int is_final(Node* n){
-    return 0;
+  if(!is_valid(n)) return 0;
+  for (size_t i = 0; i<9; i++){
+    for (size_t j = 0; j<9; j++){
+      if (n->sudo[i][j] == 0) return 0;
+    }
+  }
+  return 1;
 }
 
 Node* DFS(Node* initial, int* cont){
-  return NULL;
+  Stack *D=createStack();
+  push(D,initial); //canned laughter
+  while(D){
+    Node*aux = copy(top(D));
+    pop(top(D));
+    if (is_final(aux)) return aux;
+    
+    return NULL;
+  }
 }
 
 
