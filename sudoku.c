@@ -44,27 +44,39 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n){
-    Node*aux = (Node*) malloc(sizeof(Node));
-    int k,p,t,h;
-    for(k = 1; k<10; k++){
-      for(p=0;p<9;p++){
-        int i=3*(k/3) + (p/3) ;
-        int j=3*(k%3) + (p%3) ;
-        
-        aux->sudo[i%3][j%3] = n->sudo[i][j];
-      }
-      List*lista = createList();
-      for(t=0;t<4;t++){
-        for(h=0;h<4;t++){
-          while((lista)!= NULL){
-            if (aux->sudo[t][h] == lista){
-              return 0;
+    for(int i=0; i<9; i++){
+        int seen[10] = {0};
+        for(int j=0; j<9; j++){
+            int val = n->sudo[i][j];
+            if(val != 0){
+                if(seen[val]) return 0;
+                seen[val] = 1;
             }
-            pushFront(lista,aux->sudo[t][h]);
-            lista = next(lista);
-          }
         }
-      }
+    }
+    for(int j=0; j<9; j++){
+        int seen[10] = {0};
+        for(int i=0; i<9; i++){
+            int val = n->sudo[i][j];
+            if(val != 0){
+                if(seen[val]) return 0;
+                seen[val] = 1;
+            }
+        }
+    }
+    for(int box_i=0; box_i<3; box_i++){
+        for(int box_j=0; box_j<3; box_j++){
+            int seen[10] = {0};
+            for(int i=0; i<3; i++){
+                for(int j=0; j<3; j++){
+                    int val = n->sudo[box_i*3 + i][box_j*3 + j];
+                    if(val != 0){
+                        if(seen[val]) return 0;
+                        seen[val] = 1;
+                    }
+                }
+            }
+        }
     }
     return 1;
 }
