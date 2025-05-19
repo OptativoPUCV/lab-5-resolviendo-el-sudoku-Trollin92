@@ -120,7 +120,8 @@ Node* DFS(Node* initial, int* cont){
   Stack *D=createStack();
   push(D,initial); //canned laughter
   while(!is_empty(D)){
-    Node*aux = pop(D);
+    Node*aux = top(D);    // Me parece que está malo el pop para usarlo en pilas :(
+    pop(D);
     (*cont)++;
     if (is_final(aux)) return aux;
     List *listaNodos = get_adj_nodes(aux);
