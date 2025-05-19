@@ -44,7 +44,28 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n){
-
+    Node*aux = (Node*) malloc(sizeof(Node));
+    int k,p,t,h;
+    for(k = 1; k<10; k++){
+      for(p=0;p<9;p++){
+        int i=3*(k/3) + (p/3) ;
+        int j=3*(k%3) + (p%3) ;
+        
+        aux->sudo[i%3][j%3] = n->sudo[i][j];
+      }
+      List*lista = createList();
+      for(t=0;t<4;t++){
+        for(h=0;h<4;t++){
+          while((lista)!= NULL){
+            if (aux->sudo[t][h] == lista){
+              return 0;
+            }
+            pushFront(lista,aux->sudo[t][h]);
+            lista = next(lista);
+          }
+        }
+      }
+    }
     return 1;
 }
 
@@ -67,7 +88,7 @@ List* get_adj_nodes(Node* n){
    for (int num = 1; num<=9; num++){
     aux = copy(n);
     aux->sudo[x][y] = num;
-    pushFront(list,aux);
+    if (is_valid(aux)) pushFront(list,aux);
    }
    return list;
 }

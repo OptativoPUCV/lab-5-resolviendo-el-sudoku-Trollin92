@@ -102,3 +102,26 @@ Sun, May 18, 2025  7:08:56 PM:
  tests:  0|5
 total_score: 0/70
 c4ada71
+Sun, May 18, 2025  8:16:40 PM: 
+ sudoku.c | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
+Compilation failed
+In file included from test.c:5:
+sudoku.c: In function 'is_valid':
+sudoku.c:60:33: warning: comparison between pointer and integer
+   60 |             if (aux->sudo[t][h] == lista){
+      |                                 ^~
+sudoku.c:63:41: error: passing argument 2 of 'pushFront' makes pointer from integer without a cast [-Wint-conversion]
+   63 |             pushFront(lista,aux->sudo[t][h]);
+      |                             ~~~~~~~~~~~~^~~
+      |                                         |
+      |                                         int
+In file included from test.c:4:
+list.h:22:34: note: expected 'void *' but argument is of type 'int'
+   22 | void pushFront(List* list, void* data);
+      |                            ~~~~~~^~~~
+test.c: At top level:
+test.c:7:8: warning: '_strdup' redeclared without dllimport attribute: previous dllimport ignored [-Wattributes]
+    7 | char * _strdup(const char * str) {
+      |        ^~~~~~~
+1a405f1
